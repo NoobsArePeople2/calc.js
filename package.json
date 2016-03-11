@@ -1,0 +1,27 @@
+{
+  "name": "calc.js",
+  "version": "0.1.0",
+  "description": "A calculation library.",
+  "main": "src/calc.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/NoobsArePeople2/calc.js.git"
+  },
+  "keywords": [
+    "calculator",
+    "calculation"
+  ],
+  "author": "Sean Monahan <sean@seanmonahan.org> (http://seanmonahan.org/)",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/NoobsArePeople2/calc.js#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
