@@ -1,5 +1,18 @@
 'use strict';
 
+(function (root, factory) {
+
+    // UMD
+    if (typeof define === 'function' && define.amd) {
+        define([], factory);
+    } else if (typeof exports === 'object') {
+        module.exports = factory();
+    } else {
+        root.calc = factory();
+    }
+
+}(this, function() {
+
 /**
  * Operators supported by the calculator.
  * Keys are supported operators.
@@ -25,6 +38,22 @@ var OPERATORS = {
 };
 
 /**
+ * Unary operaters supported by the calculator.
+ * Keys are supported operators.
+ * Values list the operator precendence.
+ * A higher precendence value corresponds with higher operator precendence.
+ *
+ * @private
+ * @property {Object} UNARY_OPERATORS    List of all supported operators
+ * @property {Array}  UNARY_OPERATORS.!  Unary minus operator.
+ */
+var UNARY_OPERATORS = {
+
+    '!': [ 0 ]   // Unary minus
+
+};
+
+/**
  * Check if a token is an operator.
  * @function
  *
@@ -40,6 +69,33 @@ var OPERATORS = {
  */
 function isOperator(token) {
     return token.length === 1 && OPERATORS[token] !== undefined;
+}
+
+/**
+ * Check if a token is a unary operator.
+ * @function
+ *
+ * Valid operators:
+ *    - !
+ *
+ * @param {String} token The string to test.
+ * @return {Boolean} <code>true</code> if the token is an operator, <code>false</code> if not.
+ */
+function isUnaryOperator(token) {
+    return token.length === 1 && UNARY_OPERATORS[token] !== undefined;
+}
+
+/**
+ * Check if the token is the unary negative operator.
+ * E.g., <code>-4</code> as opposed to <code>3 - 4</code>.
+ *
+ * @param {String} token The token to check.
+ * @param {Array} stack The current stack of tokens.
+ * @return {Boolean} <code>true</code> if <code>token</code> is unary negative, <code>false</code> otherwise.
+ */
+function isUnaryNegative(token, stack) {
+    // The token is the minus sign "m" AND the first token on the stack OR the previous token is an operator.
+    return token === '-' && (stack.length === 0 || isOperator(stack[stack.length - 1]));
 }
 
 /**
@@ -65,6 +121,28 @@ function compareOperators(a, b) {
  */
 function isOpenParen(token) {
     return token === '(';
+}
+
+/**
+ * Helper to check if a token is an close parenthesis (')');
+ * @function
+ *
+ * @param {String} token The token to test.
+ * @return {Boolean} <code>true</code> if <code>token</code> is an close paren, <code>false</code> otherwise.
+ */
+function isCloseParen(token) {
+    return token === ')';
+}
+
+/**
+ * Helper to check if a token is a parenthesis ('(' or ')');
+ * @function
+ *
+ * @param {String} token The token to test.
+ * @return {Boolean} <code>true</code> if <code>token</code> is a paren, <code>false</code> otherwise.
+ */
+function isParen(token) {
+    return token === '(' || token === ')';
 }
 
 /**
@@ -145,17 +223,27 @@ function binaryOp(a, b, op) {
             return add(a, b);
 
         case '-':
-            return subtract(b, a);
+            return subtract(a, b);
 
         case '*':
             return multiply(a, b);
 
         case '/':
-            return divide(b, a);
+            return divide(a, b);
 
         case '%':
-            return modulo(b, a);
+            return modulo(a, b);
 
+    }
+
+    return NaN;
+}
+
+function unaryOp(a, op) {
+
+    if (op === '!') {
+        // Unary minus
+        return 0 - a;
     }
 
     return NaN;
@@ -168,9 +256,9 @@ function binaryOp(a, b, op) {
  * @param {String} exp The expression.
  * @return {Array} Returns an array in postfix format.
  */
-function readExpression(exp) {
+function readExpression(expression) {
 
-    exp = exp.replace(/\s/g, '');
+    var exp = expression.replace(/\s/g, '');
     var len = exp.length;
     var i = 0;
     var stack = [];
@@ -179,15 +267,24 @@ function readExpression(exp) {
     while (i < len) {
 
         var token = exp[i];
+
         if (isOperator(token)) {
 
-            while (stack.length > 0 && isOperator(stack[stack.length - 1])) {
-                if (compareOperators(token, stack[stack.length - 1]) <= 0) {
-                    // While we have something on the stack and the token has less precendence
-                    postfix.push(stack.pop());
+            if (isUnaryNegative(token, stack)) {
+
+                stack.push('!');
+
+            } else {
+
+                while (stack.length > 0 && isOperator(stack[stack.length - 1])) {
+                    if (compareOperators(token, stack[stack.length - 1]) <= 0) {
+                        // While we have something on the stack and the token has less precendence
+                        postfix.push(stack.pop());
+                    }
                 }
+                stack.push(token);
+
             }
-            stack.push(token);
 
         } else if (token === '(') {
 
@@ -202,9 +299,19 @@ function readExpression(exp) {
 
         } else {
 
-            // Operand
-            postfix.push(token);
+            // Read operands longer than a single character
+            var start = i;
+            while (i + 1 < len && !isOperator(exp[i + 1]) && !isParen(exp[i + 1])) {
+                i += 1;
+            }
+            var end = i + 1;
 
+            postfix.push(exp.slice(start, end));
+
+            // Handle unary operators
+            if (stack.length > 0 && isUnaryOperator(stack[stack.length - 1])) {
+                postfix.push(stack.pop());
+            }
         }
 
         i += 1;
@@ -232,13 +339,18 @@ function evaluatePostfix(postfix) {
     while (i < len) {
 
         var token = postfix[i];
-        if (!isOperator(token)) {
+
+        if (isUnaryOperator(token)) {
+            var a = +stack.pop();
+            stack.push(unaryOp(a, token));
+
+        } else if (!isOperator(token)) {
             // Operand
             stack.push(token);
         } else {
-            var a = parseFloat(stack.pop());
-            var b = parseFloat(stack.pop());
-            stack.push(binaryOp(a, b, token));
+            var a = +stack.pop();
+            var b = +stack.pop();
+            stack.push(binaryOp(b, a, token));
         }
 
         i += 1;
@@ -254,7 +366,7 @@ function evaluatePostfix(postfix) {
  * @param {String} exp The expression to evaluate.
  * @return {Number|NaN} The result of evaluating the expression or <code>NaN</code> if something goes wrong.
  */
-function evaluateExpression(exp) {
+function calculate(exp) {
     return evaluatePostfix(readExpression(exp));
 }
 
@@ -265,21 +377,6 @@ function log(msg) {
     console.log(msg);
 }
 
-// log(evaluateExpression('3 + 4'));
-// log(evaluateExpression('3 + 4 + 5'));
-// log(evaluateExpression('3 + 4 / 4'));
+return calculate;
 
-// log(evaluateExpression('3 * 4 / 4'));
-// log(readExpression('3 * 4 / 4'));
-
-// log(evaluateExpression('3 * 4'));
-// log(readExpression('3 * 4'));
-
-// log(evaluateExpression('2 / 4'));
-// log(evaluateExpression('2 - 4'));
-
-log(evaluateExpression('2 / (1 + 1)'));
-log(readExpression('2 / (1 + 1)'));
-
-log(evaluateExpression('2 / (2 + 2)'));
-log(evaluateExpression('1 / (1 + 2)'));
+}));
