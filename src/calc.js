@@ -330,6 +330,12 @@ function readExpression(expression) {
             while (stack.length > 0 && !isOpenParen(stack[stack.length - 1])) {
                 postfix.push(stack.pop());
             }
+
+            if (stack.length === 0) {
+                // Mismatched parens
+                return [];
+            }
+
             stack.pop(); // Get rid of the open paren.
 
         } else {
@@ -369,6 +375,10 @@ function readExpression(expression) {
 function evaluatePostfix(postfix, popFunc) {
 
     if (postfix.length === 0) {
+        return NaN;
+    }
+
+    if (isParen(postfix[postfix.length - 1])) {
         return NaN;
     }
 
