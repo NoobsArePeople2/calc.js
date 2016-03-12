@@ -43,6 +43,10 @@ describe('compute.js addition', () => {
             expect(compute('1 + -(2 + 2)')).to.equal(-3);
         });
 
+        it('should add "(6 + 7)"', () => {
+            expect(compute('(6 + 7)')).to.equal(13);
+        })
+
         it('should add "100 + 1"', () => {
             expect(compute('100 + 1')).to.equal(101);
         });
@@ -215,10 +219,74 @@ describe('compute.js addition', () => {
         });
     });
 
-    content('junk values', () => {
+    context('junk values', () => {
 
-       expect('expression "4 +" to be NaN', () => {
-           expect(compute('4 +')).to.be(NaN);
+       it('should evaluate expression "4 +" to be NaN', () => {
+           expect(compute('4 +')).to.be.NaN;
+       });
+
+       it('should evaluate expression "4++" to be NaN', () => {
+           expect(compute('4++')).to.be.NaN;
+       });
+
+       it('should evaluate expression "+4" to be NaN', () => {
+           expect(compute('+4')).to.be.NaN;
+       });
+
+       it('should evaluate expression "NaN" to be NaN', () => {
+           expect(compute('NaN')).to.be.NaN;
+       });
+
+       it('should evaluate NaN to be NaN', () => {
+           expect(compute(NaN)).to.be.NaN;
+       });
+
+       it('should evaluate "undefined" to be NaN', () => {
+           expect(compute('undefined')).to.be.NaN;
+       });
+
+       it('should evaluate undefined to be NaN', () => {
+           expect(compute(undefined)).to.be.NaN;
+       });
+
+       it('should evaluate "null" to be NaN', () => {
+           expect(compute('null')).to.be.NaN;
+       });
+
+       it('should evaluate null to be NaN', () => {
+           expect(compute(null)).to.be.NaN;
+       });
+
+       it('should evaluate {} to be NaN', () => {
+           expect(compute({})).to.be.NaN;
+       });
+
+       it('should evaluate [] to be NaN', () => {
+           expect(compute([])).to.be.NaN;
+       });
+
+       it('should evaluate +Infinity to be NaN', () => {
+           expect(compute(+Infinity)).to.be.NaN;
+       });
+
+       it('should evaluate -Infinity to be NaN', () => {
+           expect(compute(-Infinity)).to.be.NaN;
+       });
+
+       it('should evaluate "a + b + c" to be NaN', () => {
+           expect(compute('a + b + c')).to.be.NaN;
+       });
+
+       it('should evaluate "5 + NaN" to be NaN', () => {
+           expect(compute('5 + NaN')).to.be.NaN;
+       });
+
+       it('should evaluate "(5 + 4 to be NaN', () => {
+           expect(compute('(5 + 4')).to.be.NaN;
+       });
+
+       it('should evaluate "5 + 4) to be NaN', () => {
+           expect(compute('5 + 4)')).to.be.NaN;
        });
 
     });

@@ -250,6 +250,37 @@ function unaryOp(a, op) {
 }
 
 /**
+ * Helper function for popping values off a stack.
+ * @function
+ *
+ * This is used for the default popping behavior when evaluating string expressions.
+ *
+ * @param {Stack} stack An object with a <code>pop()</code> method. E.g., <code>Array</code>.
+ * @return {Number|NaN} A <code>Number</code> or <code>NaN</code> if the popped value cannot be converted.
+ */
+function popper(stack) {
+    return +stack.pop();
+}
+
+/**
+ * Helper function for popping values off a stack.
+ * @function
+ *
+ * Used by the <code>createComputer()</code> function to pop values of a stack
+ * and reference the computer object's keys.
+ *
+ * @param {Object} obj The object whose keys we use in the computed expression.
+ * @return {Function} A function used to pop values off a stack. Returned function signature:
+ *                    <code>function({Stack}):Number|NaN</code>.
+ */
+function computerPopper(obj) {
+    return function(stack) {
+        var tmp = stack.pop();
+        return obj[tmp] ? +obj[tmp] : tmp;
+    };
+}
+
+/**
  * Read an infix mathmatical expression.
  * @function
  *
@@ -257,6 +288,10 @@ function unaryOp(a, op) {
  * @return {Array} Returns an array in postfix format.
  */
 function readExpression(expression) {
+
+    if (typeof expression !== 'string') {
+        return [];
+    }
 
     var exp = expression.replace(/\s/g, '');
     var len = exp.length;
@@ -325,37 +360,6 @@ function readExpression(expression) {
 }
 
 /**
- * Helper function for popping values off a stack.
- * @function
- *
- * This is used for the default popping behavior when evaluating string expressions.
- *
- * @param {Stack} stack An object with a <code>pop()</code> method. E.g., <code>Array</code>.
- * @return {Number|NaN} A <code>Number</code> or <code>NaN</code> if the popped value cannot be converted.
- */
-function popper(stack) {
-    return +stack.pop();
-}
-
-/**
- * Helper function for popping values off a stack.
- * @function
- *
- * Used by the <code>createComputer()</code> function to pop values of a stack
- * and reference the computer object's keys.
- *
- * @param {Object} obj The object whose keys we use in the computed expression.
- * @return {Function} A function used to pop values off a stack. Returned function signature:
- *                    <code>function({Stack}):Number|NaN</code>.
- */
-function computerPopper(obj) {
-    return function(stack) {
-        var tmp = stack.pop();
-        return obj[tmp] ? +obj[tmp] : tmp;
-    };
-}
-
-/**
  * Evaluates the postfix order produced by <code>readExpression()</code>.
  * @function
  *
@@ -363,6 +367,10 @@ function computerPopper(obj) {
  * @return {Number|NaN} The result of evaluating the expression or <code>NaN</code> if something goes wrong.
  */
 function evaluatePostfix(postfix, popFunc) {
+
+    if (postfix.length === 0) {
+        return NaN;
+    }
 
     var pop = (typeof popFunc === 'function') ? popFunc : popper;
 
@@ -374,7 +382,6 @@ function evaluatePostfix(postfix, popFunc) {
         var token = postfix[i];
 
         if (isUnaryOperator(token)) {
-            // var a = +stack.pop();
             var a = pop(stack);
             stack.push(unaryOp(a, token));
 
@@ -384,8 +391,6 @@ function evaluatePostfix(postfix, popFunc) {
         } else {
             var a = pop(stack);
             var b = pop(stack);
-            // var a = +stack.pop();
-            // var b = +stack.pop();
             stack.push(binaryOp(b, a, token));
         }
 
