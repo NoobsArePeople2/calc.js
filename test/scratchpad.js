@@ -1,7 +1,16 @@
 'use strict';
 
-let calc = require('../src/calc');
+let createComputer = require('../src/calc').createComputer;
 
-console.log('10 + 1:  ' + calc('10 + 1'));
-console.log('10 + 10: ' + calc('10 + 10'));
-console.log('10293292380 + 14560: ' + calc('10293292380 + 14560'));
+var obj = {
+    a: 1,
+    b: 2,
+    c: 3
+};
+
+obj.compute = createComputer(obj, 'a + b + c');
+
+console.log(obj.compute());
+
+obj.b = 10;
+console.log(obj.compute());

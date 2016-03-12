@@ -325,13 +325,46 @@ function readExpression(expression) {
 }
 
 /**
+ * Helper function for popping values off a stack.
+ * @function
+ *
+ * This is used for the default popping behavior when evaluating string expressions.
+ *
+ * @param {Stack} stack An object with a <code>pop()</code> method. E.g., <code>Array</code>.
+ * @return {Number|NaN} A <code>Number</code> or <code>NaN</code> if the popped value cannot be converted.
+ */
+function popper(stack) {
+    return +stack.pop();
+}
+
+/**
+ * Helper function for popping values off a stack.
+ * @function
+ *
+ * Used by the <code>createComputer()</code> function to pop values of a stack
+ * and reference the computer object's keys.
+ *
+ * @param {Object} obj The object whose keys we use in the computed expression.
+ * @return {Function} A function used to pop values off a stack. Returned function signature:
+ *                    <code>function({Stack}):Number|NaN</code>.
+ */
+function computerPopper(obj) {
+    return function(stack) {
+        var tmp = stack.pop();
+        return obj[tmp] ? +obj[tmp] : tmp;
+    };
+}
+
+/**
  * Evaluates the postfix order produced by <code>readExpression()</code>.
  * @function
  *
  * @param {Array} postfix Expression in postfix order.
  * @return {Number|NaN} The result of evaluating the expression or <code>NaN</code> if something goes wrong.
  */
-function evaluatePostfix(postfix) {
+function evaluatePostfix(postfix, popFunc) {
+
+    var pop = (typeof popFunc === 'function') ? popFunc : popper;
 
     var stack = [];
     var len = postfix.length;
@@ -341,15 +374,18 @@ function evaluatePostfix(postfix) {
         var token = postfix[i];
 
         if (isUnaryOperator(token)) {
-            var a = +stack.pop();
+            // var a = +stack.pop();
+            var a = pop(stack);
             stack.push(unaryOp(a, token));
 
         } else if (!isOperator(token)) {
             // Operand
             stack.push(token);
         } else {
-            var a = +stack.pop();
-            var b = +stack.pop();
+            var a = pop(stack);
+            var b = pop(stack);
+            // var a = +stack.pop();
+            // var b = +stack.pop();
             stack.push(binaryOp(b, a, token));
         }
 
@@ -360,13 +396,44 @@ function evaluatePostfix(postfix) {
 }
 
 /**
+ * Create a computer function.
+ * @function
+ *
+ * This function returns a function that will compute values on
+ * an object by reading the object's keys from a supplied expression.
+ *
+ * An example:
+ * var obj = { a: 1, b: 2 };
+ * var computer = createComputer(obj, 'a + b');
+ * computer(); // 3
+ *
+ * obj.a = 2;
+ * computer(); // 4
+ *
+ *
+ * @param {Object} obj Object that holds the keys used in the mathematical expression
+ *                     defined by <code>expression</code>.
+ * @param {String} expression Mathematical expression used to compute values stored in <code>obj</code>.
+ * @return {Function} A function that will compute the provided expression based on the current
+ *                    values of the provided object.
+ *                    Returned function signature: <code>function():Number|NaN</code>.
+ */
+function createComputer(obj, expression) {
+    var postfix = readExpression(expression);
+    return function () {
+        return evaluatePostfix(postfix, computerPopper(obj));
+    };
+}
+
+
+/**
  * Evaluate a mathematical expression.
  * @function
  *
  * @param {String} exp The expression to evaluate.
  * @return {Number|NaN} The result of evaluating the expression or <code>NaN</code> if something goes wrong.
  */
-function calculate(exp) {
+function compute(exp) {
     return evaluatePostfix(readExpression(exp));
 }
 
@@ -377,6 +444,9 @@ function log(msg) {
     console.log(msg);
 }
 
-return calculate;
+return {
+    compute:        compute,
+    createComputer: createComputer
+};
 
 }));
