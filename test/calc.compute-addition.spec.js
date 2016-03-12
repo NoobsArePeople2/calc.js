@@ -213,6 +213,13 @@ describe('compute.js addition', () => {
         it('should add "-42343.123123 + 4234 + 999999.999999"', () => {
             expect(compute('-42343.123123 + 4234 + 999999.999999')).to.be.closeTo(961890.876876, 0.0000001);
         });
+    });
+
+    content('junk values', () => {
+
+       expect('expression "4 +" to be NaN', () => {
+           expect(compute('4 +')).to.be(NaN);
+       });
 
     });
 });
