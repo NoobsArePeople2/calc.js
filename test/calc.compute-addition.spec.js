@@ -289,5 +289,8 @@ describe('compute.js addition', () => {
            expect(compute('5 + 4)')).to.be.NaN;
        });
 
+       it('should evaluate ")5 + 4(" to be NaN', () => {
+           expect(compute(')5 + 4(')).to.be.NaN;
+       });
     });
 });
