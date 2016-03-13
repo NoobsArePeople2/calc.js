@@ -298,6 +298,7 @@ function readExpression(expression) {
     var i = 0;
     var stack = [];
     var postfix = [];
+    var lastToken = '';
 
     while (i < len) {
 
@@ -305,7 +306,7 @@ function readExpression(expression) {
 
         if (isOperator(token)) {
 
-            if (isUnaryNegative(token, stack)) {
+            if (isUnaryNegative(token, stack) && (isOperator(lastToken) || lastToken === '')) {
 
                 stack.push('!');
 
@@ -355,6 +356,7 @@ function readExpression(expression) {
             }
         }
 
+        lastToken = token;
         i += 1;
     }
 
