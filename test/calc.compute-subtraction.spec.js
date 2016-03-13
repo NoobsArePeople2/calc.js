@@ -144,157 +144,117 @@ describe('compute.js subtraction', () => {
 
     });
 
-    // context('integers + floats', () => {
+    context('integers + floats', () => {
 
-    //     it('should add "1 + 1.0"', () => {
-    //         expect(compute('1 + 1.0')).to.be.closeTo(2.0, 0.01);
-    //     });
+        it('should add "1 - 1.0"', () => {
+            expect(compute('1 - 1.0')).to.be.closeTo(0.0, 0.01);
+        });
 
-    //     it('should add "1.0 + 1"', () => {
-    //         expect(compute('1.0 + 1')).to.be.closeTo(2.0, 0.01);
-    //     });
+        it('should add "1.0 - 1"', () => {
+            expect(compute('1.0 - 1')).to.be.closeTo(0.0, 0.01);
+        });
 
-    //     it('should add "1+1.0"', () => {
-    //         expect(compute('1+1.0')).to.be.closeTo(2.0, 0.01);
-    //     });
+        it('should add "1-1.0"', () => {
+            expect(compute('1-1.0')).to.be.closeTo(0.0, 0.01);
+        });
 
-    //     it('should add "1.0+1"', () => {
-    //         expect(compute('1.0+1')).to.be.closeTo(2.0, 0.01);
-    //     });
+        it('should add "1.0-1"', () => {
+            expect(compute('1.0-1')).to.be.closeTo(0.0, 0.01);
+        });
 
-    //     it('should add "10 + 1.0"', () => {
-    //         expect(compute('10 + 1.0')).to.be.closeTo(11.0, 0.01);
-    //     });
+        it('should add "10 - 1.0"', () => {
+            expect(compute('10 - 1.0')).to.be.closeTo(9.0, 0.01);
+        });
 
-    //     it('should add "1.0 + 10"', () => {
-    //         expect(compute('1.0 + 10')).to.be.closeTo(11.0, 0.01);
-    //     });
+        it('should add "1.0 - 10"', () => {
+            expect(compute('1.0 - 10')).to.be.closeTo(-9.0, 0.01);
+        });
 
-    //     it('should add "1 + -1.0"', () => {
-    //         expect(compute('1 + -1.0')).to.be.closeTo(0.0, 0.01);
-    //     });
+        it('should add "1 - -1.0"', () => {
+            expect(compute('1 - -1.0')).to.be.closeTo(2.0, 0.01);
+        });
 
-    //     it('should add "-1.0 + 1"', () => {
-    //         expect(compute('-1.0 + 1')).to.be.closeTo(0.0, 0.01);
-    //     });
+        it('should add "-1.0 - 1"', () => {
+            expect(compute('-1.0 - 1')).to.be.closeTo(-2.0, 0.01);
+        });
 
-    //     it('should add "10.0 + 10"', () => {
-    //         expect(compute('10.0 + 10')).to.be.closeTo(20.0, 0.01);
-    //     });
+        it('should add "10.0 - 10"', () => {
+            expect(compute('10.0 - 10')).to.be.closeTo(0.0, 0.01);
+        });
 
-    //     it('should add "10 + 10.0"', () => {
-    //         expect(compute('10 + 10.0')).to.be.closeTo(20.0, 0.01);
-    //     });
+        it('should add "10 - 10.0"', () => {
+            expect(compute('10 - 10.0')).to.be.closeTo(0.0, 0.01);
+        });
 
-    //     it('should add "-1 + -1.0"', () => {
-    //         expect(compute('-1 + -1.0')).to.be.closeTo(-2.0, 0.01);
-    //     });
+        it('should add "-1 - -1.0"', () => {
+            expect(compute('-1 - -1.0')).to.be.closeTo(0.0, 0.01);
+        });
 
-    //     it('should add "-1.0 + -1"', () => {
-    //         expect(compute('-1.0 + -1')).to.be.closeTo(-2.0, 0.01);
-    //     });
+        it('should add "-1.0 - -1"', () => {
+            expect(compute('-1.0 - -1')).to.be.closeTo(0.0, 0.01);
+        });
 
-    //     it('should add "1.0 + -(2.0 + 2)"', () => {
-    //         expect(compute('1.0 + -(2.0 + 2)')).to.be.closeTo(-3.0, 0.01);
-    //     });
+        it('should add "1.0 - -(2.0 - 2)"', () => {
+            expect(compute('1.0 - -(2.0 - 2)')).to.be.closeTo(1.0, 0.01);
+        });
 
-    //     it('should add "-100 + 0.923123"', () => {
-    //         expect(compute('-100 + 0.923123')).to.be.closeTo(-99.076877, 0.0000001);
-    //     });
+        it('should add "-100 - 0.923123"', () => {
+            expect(compute('-100 - 0.923123')).to.be.closeTo(-100.923123, 0.0000001);
+        });
 
-    //     it('should add "0.923123 + -100"', () => {
-    //         expect(compute('0.923123 + -100')).to.be.closeTo(-99.076877, 0.0000001);
-    //     });
+        it('should add "0.923123 - -100"', () => {
+            expect(compute('0.923123 - -100')).to.be.closeTo(100.923123, 0.0000001);
+        });
 
-    //     it('should add "0.131234 + 5 + 6 + 13123.123994"', () => {
-    //         expect(compute('0.131234 + 5 + 6 + 13123.123994')).to.be.closeTo(13134.255228, 0.0000001);
-    //     });
+        it('should add "0.131234 - 5 - 6 - 13123.123994"', () => {
+            expect(compute('0.131234 - 5 - 6 - 13123.123994')).to.be.closeTo(-13133.99276, 0.0000001);
+        });
 
-    //     it('should add "5 + 0.131234 + 6 + 13123.123994"', () => {
-    //         expect(compute('5 + 0.131234 + 6 + 13123.123994')).to.be.closeTo(13134.255228, 0.0000001);
-    //     });
+        it('should add "5 - 0.131234 - 6 - 13123.123994"', () => {
+            expect(compute('5 - 0.131234 - 6 - 13123.123994')).to.be.closeTo(-13124.255228, 0.0000001);
+        });
 
-    //     it('should add "4234 + -42343.123123 + 999999.999999"', () => {
-    //         expect(compute('4234 + -42343.123123 + 999999.999999')).to.be.closeTo(961890.876876, 0.0000001);
-    //     });
+        it('should add "4234 - -42343.123123 - 999999.999999"', () => {
+            expect(compute('4234 - -42343.123123 - 999999.999999')).to.be.closeTo(-953422.876876, 0.0000001);
+        });
 
-    //     it('should add "-42343.123123 + 4234 + 999999.999999"', () => {
-    //         expect(compute('-42343.123123 + 4234 + 999999.999999')).to.be.closeTo(961890.876876, 0.0000001);
-    //     });
-    // });
+        it('should add "-42343.123123 - 4234 - 999999.999999"', () => {
+            expect(compute('-42343.123123 - 4234 - 999999.999999')).to.be.closeTo(-1046577.123122, 0.0000001);
+        });
+    });
 
-    // context('junk values', () => {
+    context('junk values', () => {
 
-    //    it('should evaluate expression "4 +" to be NaN', () => {
-    //        expect(compute('4 +')).to.be.NaN;
-    //    });
+       it('should evaluate expression "4 -" to be NaN', () => {
+           expect(compute('4 -')).to.be.NaN;
+       });
 
-    //    it('should evaluate expression "4++" to be NaN', () => {
-    //        expect(compute('4++')).to.be.NaN;
-    //    });
+       it('should evaluate expression "4--" to be NaN', () => {
+           expect(compute('4--')).to.be.NaN;
+       });
 
-    //    it('should evaluate expression "+4" to be NaN', () => {
-    //        expect(compute('+4')).to.be.NaN;
-    //    });
+       it('should evaluate expression "+4" to be NaN', () => {
+           expect(compute('+4')).to.be.NaN;
+       });
 
-    //    it('should evaluate expression "NaN" to be NaN', () => {
-    //        expect(compute('NaN')).to.be.NaN;
-    //    });
+       it('should evaluate "a - b - c" to be NaN', () => {
+           expect(compute('a - b - c')).to.be.NaN;
+       });
 
-    //    it('should evaluate NaN to be NaN', () => {
-    //        expect(compute(NaN)).to.be.NaN;
-    //    });
+       it('should evaluate "5 - NaN" to be NaN', () => {
+           expect(compute('5 - NaN')).to.be.NaN;
+       });
 
-    //    it('should evaluate "undefined" to be NaN', () => {
-    //        expect(compute('undefined')).to.be.NaN;
-    //    });
+       it('should evaluate "(5 - 4" to be NaN', () => {
+           expect(compute('(5 - 4')).to.be.NaN;
+       });
 
-    //    it('should evaluate undefined to be NaN', () => {
-    //        expect(compute(undefined)).to.be.NaN;
-    //    });
+       it('should evaluate "5 - 4)" to be NaN', () => {
+           expect(compute('5 - 4)')).to.be.NaN;
+       });
 
-    //    it('should evaluate "null" to be NaN', () => {
-    //        expect(compute('null')).to.be.NaN;
-    //    });
-
-    //    it('should evaluate null to be NaN', () => {
-    //        expect(compute(null)).to.be.NaN;
-    //    });
-
-    //    it('should evaluate {} to be NaN', () => {
-    //        expect(compute({})).to.be.NaN;
-    //    });
-
-    //    it('should evaluate [] to be NaN', () => {
-    //        expect(compute([])).to.be.NaN;
-    //    });
-
-    //    it('should evaluate +Infinity to be NaN', () => {
-    //        expect(compute(+Infinity)).to.be.NaN;
-    //    });
-
-    //    it('should evaluate -Infinity to be NaN', () => {
-    //        expect(compute(-Infinity)).to.be.NaN;
-    //    });
-
-    //    it('should evaluate "a + b + c" to be NaN', () => {
-    //        expect(compute('a + b + c')).to.be.NaN;
-    //    });
-
-    //    it('should evaluate "5 + NaN" to be NaN', () => {
-    //        expect(compute('5 + NaN')).to.be.NaN;
-    //    });
-
-    //    it('should evaluate "(5 + 4 to be NaN', () => {
-    //        expect(compute('(5 + 4')).to.be.NaN;
-    //    });
-
-    //    it('should evaluate "5 + 4) to be NaN', () => {
-    //        expect(compute('5 + 4)')).to.be.NaN;
-    //    });
-
-    //    it('should evaluate ")5 + 4(" to be NaN', () => {
-    //        expect(compute(')5 + 4(')).to.be.NaN;
-    //    });
-    // });
+       it('should evaluate ")5 - 4(" to be NaN', () => {
+           expect(compute(')5 - 4(')).to.be.NaN;
+       });
+    });
 });
