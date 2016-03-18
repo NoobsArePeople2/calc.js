@@ -1,7 +1,7 @@
 'use strict';
 
-let compute = require('../src/calc').compute;
-let createComputer = require('../src/calc').createComputer;
+let compute = require('./calc').compute;
+let createComputer = require('./calc').createComputer;
 
 console.log(compute('(5 + 4)'));
 console.log(compute('5 + 4)'));
