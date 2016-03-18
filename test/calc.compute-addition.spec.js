@@ -7,6 +7,10 @@ describe('compute.js addition', () => {
 
     context('integers', () => {
 
+        it('should add "1 + 0"', () => {
+            expect(compute('1 + 0')).to.equal(1);
+        });
+
         it('should add "1 + 1"', () => {
             expect(compute('1 + 1')).to.equal(2);
         });
@@ -78,6 +82,10 @@ describe('compute.js addition', () => {
 
     context('floats', () => {
 
+        it('should add "1.0 + 0.0"', () => {
+            expect(compute('1.0 + 0.0')).to.be.closeTo(1.0, 0.01);
+        })
+
         it('should add "1.0 + 1.0"', () => {
             expect(compute('1.0 + 1.0')).to.be.closeTo(2.0, 0.01);
         });
@@ -141,6 +149,14 @@ describe('compute.js addition', () => {
     });
 
     context('integers + floats', () => {
+
+        it('should add "1 + 0.0"', () => {
+            expect(compute('1 + 0.0')).to.be.closeTo(1.0, 0.01);
+        });
+
+        it('should add "0 + 1.0"', () => {
+            expect(compute('0 + 1.0')).to.be.closeTo(1.0, 0.01);
+        })
 
         it('should add "1 + 1.0"', () => {
             expect(compute('1 + 1.0')).to.be.closeTo(2.0, 0.01);
