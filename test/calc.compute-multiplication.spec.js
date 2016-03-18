@@ -7,12 +7,28 @@ describe('compute.js multiplication', () => {
 
     context('integers', () => {
 
+        it('should multiply "1 * 0"', () => {
+            expect(compute('1 * 0')).to.equal(0);
+        });
+
+        it('should multiply "0 * 1"', () => {
+            expect(compute('0 * 1')).to.equal(0);
+        });
+
         it('should multiply "1 * 1"', () => {
             expect(compute('1 * 1')).to.equal(1);
         });
 
         it('should multiply "1*1"', () => {
             expect(compute('1*1')).to.equal(1);
+        });
+
+        it('should multiply "10 * 0"', () => {
+            expect(compute('10 * 0')).to.equal(0);
+        });
+
+        it('should multiply "0 * 10', () => {
+            expect(compute('0 * 10')).to.equal(0);
         });
 
         it('should multiply "10 * 1', () => {
@@ -78,6 +94,14 @@ describe('compute.js multiplication', () => {
 
     context('floats', () => {
 
+        it('should multiply "1.0 * 0.0"', () => {
+            expect(compute('1.0 * 0.0')).to.be.closeTo(0.0, 0.01);
+        });
+
+        it('should multiply "0.0 * 1.0"', () => {
+            expect(compute('0.0 * 1.0')).to.be.closeTo(0.0, 0.01);
+        });
+
         it('should multiply "1.0 * 1.0"', () => {
             expect(compute('1.0 * 1.0')).to.be.closeTo(1.0, 0.01);
         });
@@ -141,6 +165,22 @@ describe('compute.js multiplication', () => {
     });
 
     context('integers + floats', () => {
+
+        it('should multiply "1 * 0.0"', () => {
+            expect(compute('1 * 0.0')).to.closeTo(0.0, 0.01);
+        });
+
+        it('should multiply "0.0 * 1"', () => {
+            expect(compute('0.0 * 1')).to.closeTo(0.0, 0.01);
+        });
+
+        it('should multiply "1.0 * 0"', () => {
+            expect(compute('1.0 * 0')).to.closeTo(0.0, 0.01);
+        });
+
+        it('should multiply "0 * 1.0"', () => {
+            expect(compute('0 * 1.0')).to.closeTo(0.0, 0.01);
+        });
 
         it('should multiply "1 * 1.0"', () => {
             expect(compute('1 * 1.0')).to.be.closeTo(1.0, 0.01);
