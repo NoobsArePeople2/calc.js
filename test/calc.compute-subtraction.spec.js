@@ -7,6 +7,14 @@ describe('compute.js subtraction', () => {
 
     context('integers', () => {
 
+        it('should subtract "1 - 0"', () => {
+            expect(compute('1 - 0')).to.equal(1);
+        });
+
+        it('should subtract "0 - 1"', () => {
+            expect(compute('0 - 1')).to.equal(-1);
+        });
+
         it('should subtract "1 - 1"', () => {
             expect(compute('1 - 1')).to.equal(0);
         });
@@ -82,6 +90,14 @@ describe('compute.js subtraction', () => {
 
     context('floats', () => {
 
+        it('should subtract "1.0 - 0.0"', () => {
+            expect(compute('1.0 - 0.0')).to.be.closeTo(1.0, 0.01);
+        });
+
+        it('should subtract "0.0 - 1.0"', () => {
+            expect(compute('0.0 - 1.0')).to.be.closeTo(-1.0, 0.01);
+        });
+
         it('should subtract "1.0 - 1.0"', () => {
             expect(compute('1.0 - 1.0')).to.be.closeTo(0.0, 0.01);
         });
@@ -145,6 +161,14 @@ describe('compute.js subtraction', () => {
     });
 
     context('integers + floats', () => {
+
+        it('should subtract "1 - 0.0"', () => {
+            expect(compute('1 - 0.0')).to.be.closeTo(1.0, 0.01);
+        });
+
+        it('should subtract "0 - 1.0"', () => {
+            expect(compute('0 - 1.0')).to.be.closeTo(-1.0, 0.01);
+        });
 
         it('should subtract "1 - 1.0"', () => {
             expect(compute('1 - 1.0')).to.be.closeTo(0.0, 0.01);
