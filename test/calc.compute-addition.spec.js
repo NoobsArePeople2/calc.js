@@ -3,7 +3,7 @@
 let expect  = require('chai').expect;
 let compute = require('../src/calc').compute;
 
-describe('compute.js addition', () => {
+describe('compute addition', () => {
 
     context('integers', () => {
 

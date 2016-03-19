@@ -1,9 +1,9 @@
 'use strict';
 
-let expect = require('chai').expect;
-let compute   = require('../src/calc').compute;
+let expect  = require('chai').expect;
+let compute = require('../src/calc').compute;
 
-describe('compute.js modulo', () => {
+describe('compute modulo', () => {
 
     context('integers', () => {
 
