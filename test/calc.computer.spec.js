@@ -19,7 +19,7 @@ describe('createComputer', () => {
 
    });
 
-   it('should compute a + b ater a change to a', () => {
+   it('should compute a + b after a change to a', () => {
 
        let obj = { a: 1, b: 1 };
        let compute = createComputer(obj, 'a + b');
@@ -30,7 +30,7 @@ describe('createComputer', () => {
 
    });
 
-   it('should compute a + b ater a change to b', () => {
+   it('should compute a + b after a change to b', () => {
 
        let obj = { a: 1, b: 1 };
        let compute = createComputer(obj, 'a + b');
@@ -41,7 +41,7 @@ describe('createComputer', () => {
 
    });
 
-   it('should compute a + b ater a change to a and b', () => {
+   it('should compute a + b after a change to a and b', () => {
 
        let obj = { a: 1, b: 1 };
        let compute = createComputer(obj, 'a + b');
