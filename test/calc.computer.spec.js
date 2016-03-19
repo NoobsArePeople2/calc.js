@@ -5,52 +5,78 @@ let createComputer = require('../src/calc').createComputer;
 
 describe('createComputer', () => {
 
-   it('should return a function', () => {
+    context('general', () => {
 
-       let compute = createComputer({ a: 1, b: 1 }, 'a + b');
-       expect(typeof compute).to.equal('function');
+        it('should return a function', () => {
 
-   });
+            let compute = createComputer({ a: 1, b: 1 }, 'a + b');
+            expect(typeof compute).to.equal('function');
 
-   it('should compute a + b', () => {
+        });
+    });
 
-       let compute = createComputer({ a: 1, b: 1 }, 'a + b');
-       expect(compute()).to.equal(2);
+    context('addition', () => {
 
-   });
+        it('should compute a + b', () => {
 
-   it('should compute a + b after a change to a', () => {
+            let compute = createComputer({ a: 1, b: 1 }, 'a + b');
+            expect(compute()).to.equal(2);
 
-       let obj = { a: 1, b: 1 };
-       let compute = createComputer(obj, 'a + b');
-       expect(compute()).to.equal(2);
+        });
 
-       obj.a = 2;
-       expect(compute()).to.equal(3);
+        it('should compute a + b after a change to a', () => {
 
-   });
+            let obj = { a: 1, b: 1 };
+            let compute = createComputer(obj, 'a + b');
+            expect(compute()).to.equal(2);
 
-   it('should compute a + b after a change to b', () => {
+            obj.a = 2;
+            expect(compute()).to.equal(3);
 
-       let obj = { a: 1, b: 1 };
-       let compute = createComputer(obj, 'a + b');
-       expect(compute()).to.equal(2);
+        });
 
-       obj.b = 2;
-       expect(compute()).to.equal(3);
+        it('should compute a + b after a change to b', () => {
 
-   });
+            let obj = { a: 1, b: 1 };
+            let compute = createComputer(obj, 'a + b');
+            expect(compute()).to.equal(2);
 
-   it('should compute a + b after a change to a and b', () => {
+            obj.b = 2;
+            expect(compute()).to.equal(3);
 
-       let obj = { a: 1, b: 1 };
-       let compute = createComputer(obj, 'a + b');
-       expect(compute()).to.equal(2);
+        });
 
-       obj.a = 2;
-       obj.b = 2;
-       expect(compute()).to.equal(4);
+        it('should compute a + b after a change to a and b', () => {
 
-   });
+            let obj = { a: 1, b: 1 };
+            let compute = createComputer(obj, 'a + b');
+            expect(compute()).to.equal(2);
+
+            obj.a = 2;
+            obj.b = 2;
+            expect(compute()).to.equal(4);
+
+        });
+    });
+
+    context('subtraction', () => {
+
+    });
+
+    context('multiplication', () => {
+
+    });
+
+    context('division', () => {
+
+    });
+
+    context('modulo', () => {
+
+    });
+
+    context('order of operations', () => {
+
+    });
 
 });
