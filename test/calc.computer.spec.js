@@ -28,7 +28,6 @@ describe('createComputer', () => {
 
             let obj = { a: 1, b: 1 };
             let compute = createComputer(obj, 'a + b');
-            expect(compute()).to.equal(2);
 
             obj.a = 2;
             expect(compute()).to.equal(3);
@@ -39,7 +38,6 @@ describe('createComputer', () => {
 
             let obj = { a: 1, b: 1 };
             let compute = createComputer(obj, 'a + b');
-            expect(compute()).to.equal(2);
 
             obj.b = 2;
             expect(compute()).to.equal(3);
@@ -50,7 +48,6 @@ describe('createComputer', () => {
 
             let obj = { a: 1, b: 1 };
             let compute = createComputer(obj, 'a + b');
-            expect(compute()).to.equal(2);
 
             obj.a = 2;
             obj.b = 2;
@@ -72,7 +69,6 @@ describe('createComputer', () => {
 
             let obj = { a: 1, b: 1 };
             let compute = createComputer(obj, 'a - b');
-            expect(compute()).to.equal(0);
 
             obj.a = 2;
             expect(compute()).to.equal(1);
@@ -83,7 +79,6 @@ describe('createComputer', () => {
 
             let obj = { a: 1, b: 1 };
             let compute = createComputer(obj, 'a - b');
-            expect(compute()).to.equal(0);
 
             obj.b = 2;
             expect(compute()).to.equal(-1);
@@ -94,7 +89,6 @@ describe('createComputer', () => {
 
             let obj = { a: 1, b: 1 };
             let compute = createComputer(obj, 'a - b');
-            expect(compute()).to.equal(0);
 
             obj.a = 3;
             obj.b = 2;
@@ -117,7 +111,6 @@ describe('createComputer', () => {
 
             let obj = { a: 2, b: 3 };
             let compute = createComputer(obj, 'a * b');
-            expect(compute()).to.equal(6);
 
             obj.a = 1;
             expect(compute()).to.equal(3);
@@ -128,7 +121,6 @@ describe('createComputer', () => {
 
             let obj = { a: 2, b: 3 };
             let compute = createComputer(obj, 'a * b');
-            expect(compute()).to.equal(6);
 
             obj.b = 2;
             expect(compute()).to.equal(4);
@@ -139,7 +131,6 @@ describe('createComputer', () => {
 
             let obj = { a: 2, b: 3 };
             let compute = createComputer(obj, 'a * b');
-            expect(compute()).to.equal(6);
 
             obj.a = 1;
             obj.b = 5;
@@ -162,7 +153,6 @@ describe('createComputer', () => {
 
             let obj = { a: 6, b: 3 };
             let compute = createComputer(obj, 'a / b');
-            expect(compute()).to.equal(2);
 
             obj.a = 9;
             expect(compute()).to.equal(3);
@@ -173,7 +163,6 @@ describe('createComputer', () => {
 
             let obj = { a: 6, b: 3 };
             let compute = createComputer(obj, 'a / b');
-            expect(compute()).to.equal(2);
 
             obj.b = 2;
             expect(compute()).to.equal(3);
@@ -184,7 +173,6 @@ describe('createComputer', () => {
 
             let obj = { a: 6, b: 3 };
             let compute = createComputer(obj, 'a / b');
-            expect(compute()).to.equal(2);
 
             obj.a = 10;
             obj.b = 5;
@@ -207,7 +195,6 @@ describe('createComputer', () => {
 
             let obj = { a: 6, b: 3 };
             let compute = createComputer(obj, 'a % b');
-            expect(compute()).to.equal(0);
 
             obj.a = 8;
             expect(compute()).to.equal(2);
@@ -218,7 +205,6 @@ describe('createComputer', () => {
 
             let obj = { a: 6, b: 3 };
             let compute = createComputer(obj, 'a % b');
-            expect(compute()).to.equal(0);
 
             obj.b = 5;
             expect(compute()).to.equal(1);
@@ -229,7 +215,6 @@ describe('createComputer', () => {
 
             let obj = { a: 6, b: 3 };
             let compute = createComputer(obj, 'a % b');
-            expect(compute()).to.equal(0);
 
             obj.a = 11;
             obj.b = 5;
