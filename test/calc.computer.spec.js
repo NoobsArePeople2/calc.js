@@ -151,6 +151,47 @@ describe('createComputer', () => {
 
     context('division', () => {
 
+        it('should compute a / b', () => {
+
+            let compute = createComputer({ a: 6, b: 3 }, 'a / b');
+            expect(compute()).to.equal(2);
+
+        });
+
+        it('should compute a / b after a change to a', () => {
+
+            let obj = { a: 6, b: 3 };
+            let compute = createComputer(obj, 'a / b');
+            expect(compute()).to.equal(2);
+
+            obj.a = 9;
+            expect(compute()).to.equal(3);
+
+        });
+
+        it('should compute a / b after a change to b', () => {
+
+            let obj = { a: 6, b: 3 };
+            let compute = createComputer(obj, 'a / b');
+            expect(compute()).to.equal(2);
+
+            obj.b = 2;
+            expect(compute()).to.equal(3);
+
+        });
+
+        it('should compute a / b after a change to a and b', () => {
+
+            let obj = { a: 6, b: 3 };
+            let compute = createComputer(obj, 'a / b');
+            expect(compute()).to.equal(2);
+
+            obj.a = 10;
+            obj.b = 5;
+            expect(compute()).to.equal(2);
+
+        });
+
     });
 
     context('modulo', () => {
