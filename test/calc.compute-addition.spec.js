@@ -269,4 +269,20 @@ describe('compute addition', () => {
            expect(compute(')5 + 4(')).to.be.NaN;
        });
     });
+
+    context('order of operations', () => {
+
+       it('should add "1 + 2 + (3 + 4)"', () => {
+           expect(compute('1 + 2 + (3 + 4)')).to.equal(10);
+       });
+
+       it('should add "(1) + (2) + (3 + 4)"', () => {
+           expect(compute('(1) + (2) + (3 + 4)')).to.equal(10);
+       });
+
+       it('should add "((1 + 2) + (3 + 4))"', () => {
+           expect(compute('((1 + 2) + (3 + 4))')).to.equal(10);
+       });
+
+    });
 });
