@@ -293,36 +293,36 @@ describe('compute modulo', () => {
 
     context('junk values', () => {
 
-       it('should evaluate expression "4 %" to be NaN', () => {
-           expect(compute('4 %')).to.be.NaN;
-       });
+        it('should evaluate expression "4 %" to be NaN', () => {
+            expect(compute('4 %')).to.be.NaN;
+        });
 
-       it('should evaluate expression "4%%" to be NaN', () => {
-           expect(compute('4%%')).to.be.NaN;
-       });
+        it('should evaluate expression "4%%" to be NaN', () => {
+            expect(compute('4%%')).to.be.NaN;
+        });
 
-       it('should evaluate expression "/4" to be NaN', () => {
-           expect(compute('%4')).to.be.NaN;
-       });
+        it('should evaluate expression "/4" to be NaN', () => {
+            expect(compute('%4')).to.be.NaN;
+        });
 
-       it('should evaluate "a % b % c" to be NaN', () => {
-           expect(compute('a % b % c')).to.be.NaN;
-       });
+        it('should evaluate "a % b % c" to be NaN', () => {
+            expect(compute('a % b % c')).to.be.NaN;
+        });
 
-       it('should evaluate "5 % NaN" to be NaN', () => {
-           expect(compute('5 % NaN')).to.be.NaN;
-       });
+        it('should evaluate "5 % NaN" to be NaN', () => {
+            expect(compute('5 % NaN')).to.be.NaN;
+        });
 
-       it('should evaluate "(5 % 4" to be NaN', () => {
-           expect(compute('(5 % 4')).to.be.NaN;
-       });
+        it('should evaluate "(5 % 4" to be NaN', () => {
+            expect(compute('(5 % 4')).to.be.NaN;
+        });
 
-       it('should evaluate "5 % 4)" to be NaN', () => {
-           expect(compute('5 % 4)')).to.be.NaN;
-       });
+        it('should evaluate "5 % 4)" to be NaN', () => {
+            expect(compute('5 % 4)')).to.be.NaN;
+        });
 
-       it('should evaluate ")5 % 4(" to be NaN', () => {
-           expect(compute(')5 % 4(')).to.be.NaN;
-       });
+        it('should evaluate ")5 % 4(" to be NaN', () => {
+            expect(compute(')5 % 4(')).to.be.NaN;
+        });
     });
 });
