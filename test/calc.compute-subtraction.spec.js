@@ -282,6 +282,36 @@ describe('compute subtraction', () => {
         });
     });
 
+    context('order of operations', () => {
 
+        it('should subtract "1 - 2 - (3 - 4)"', () => {
+            expect(compute('1 - 2 - (3 - 4)')).to.equal(0);
+        });
+
+        it('should subtract "(1) - (2) - (3 - 4)"', () => {
+            expect(compute('(1) - (2) - (3 - 4)')).to.equal(0);
+        });
+
+        it('should subtract "((1 - 2) - (3 - 4))"', () => {
+            expect(compute('((1 - 2) - (3 - 4))')).to.equal(0);
+        });
+
+        it('should subtract "(1 - 2 - 3) - 4"', () => {
+            expect(compute('(1 - 2 - 3) - 4')).to.equal(-8);
+        });
+
+        it('should subtract "(1 - 2) - 3 - 4"', () => {
+            expect(compute('(1 - 2) - 3 - 4')).to.equal(-8);
+        });
+
+        it('should subtract "1 - (2 - 3 - 4)"', () => {
+            expect(compute('1 - (2 - 3 - 4)')).to.equal(6);
+        });
+
+        it('should subtract "1 - (2 - (3 - 4))"', () => {
+            expect(compute('1 - (2 - (3 - 4))')).to.equal(-2);
+        });
+
+    });
 
 });
