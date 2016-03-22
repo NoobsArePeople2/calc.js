@@ -196,9 +196,46 @@ describe('createComputer', () => {
 
     context('modulo', () => {
 
-    });
+        it('should compute a % b', () => {
 
-    context('order of operations', () => {
+            let compute = createComputer({ a: 6, b: 3 }, 'a % b');
+            expect(compute()).to.equal(0);
+
+        });
+
+        it('should compute a % b after a change to a', () => {
+
+            let obj = { a: 6, b: 3 };
+            let compute = createComputer(obj, 'a % b');
+            expect(compute()).to.equal(0);
+
+            obj.a = 8;
+            expect(compute()).to.equal(2);
+
+        });
+
+        it('should compute a % b after a change to b', () => {
+
+            let obj = { a: 6, b: 3 };
+            let compute = createComputer(obj, 'a % b');
+            expect(compute()).to.equal(0);
+
+            obj.b = 5;
+            expect(compute()).to.equal(1);
+
+        });
+
+        it('should compute a % b after a change to a and b', () => {
+
+            let obj = { a: 6, b: 3 };
+            let compute = createComputer(obj, 'a % b');
+            expect(compute()).to.equal(0);
+
+            obj.a = 11;
+            obj.b = 5;
+            expect(compute()).to.equal(1);
+
+        });
 
     });
 
