@@ -61,6 +61,47 @@ describe('createComputer', () => {
 
     context('subtraction', () => {
 
+        it('should compute a - b', () => {
+
+            let compute = createComputer({ a: 1, b: 1 }, 'a - b');
+            expect(compute()).to.equal(0);
+
+        });
+
+        it('should compute a - b after a change to a', () => {
+
+            let obj = { a: 1, b: 1 };
+            let compute = createComputer(obj, 'a - b');
+            expect(compute()).to.equal(0);
+
+            obj.a = 2;
+            expect(compute()).to.equal(1);
+
+        });
+
+        it('should compute a - b after a change to b', () => {
+
+            let obj = { a: 1, b: 1 };
+            let compute = createComputer(obj, 'a - b');
+            expect(compute()).to.equal(0);
+
+            obj.b = 2;
+            expect(compute()).to.equal(-1);
+
+        });
+
+        it('should compute a - b after a change to a and b', () => {
+
+            let obj = { a: 1, b: 1 };
+            let compute = createComputer(obj, 'a - b');
+            expect(compute()).to.equal(0);
+
+            obj.a = 3;
+            obj.b = 2;
+            expect(compute()).to.equal(1);
+
+        });
+
     });
 
     context('multiplication', () => {
