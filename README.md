@@ -41,6 +41,8 @@ Yes, we just took a two line example and made it four lines. There is a reason f
     value = computeValue();
     console.log(value); // 4
 
+`createComputer` supports all the same operators as `compute`.
+
 
 ## License
 
