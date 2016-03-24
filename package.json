@@ -7,6 +7,7 @@
     "test": "test"
   },
   "scripts": {
+    "doc": "./node_modules/.bin/jsdoc src/calc.js",
     "lint": "./node_modules/.bin/eslint src/calc.js test/*.spec.js",
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
@@ -24,6 +25,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "eslint": "^2.4.0",
+    "jsdoc": "^3.4.0",
     "mocha": "^2.4.5"
   }
 }
