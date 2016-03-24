@@ -312,12 +312,17 @@ function readExpression(expression) {
 
             } else {
 
-                while (stack.length > 0 && isOperator(stack[stack.length - 1])) {
-                    if (compareOperators(token, stack[stack.length - 1]) <= 0) {
-                        // While we have something on the stack and the token has less precendence
-                        postfix.push(stack.pop());
-                    }
+                var stackLen = stack.length;
+                while (stackLen > 0 &&
+                       isOperator(stack[stackLen - 1]) &&
+                       compareOperators(token, stack[stackLen - 1]) <= 0) {
+
+                    // While we have something on the stack and the token has less precendence
+                    postfix.push(stack.pop());
+                    stackLen = stack.length;
+
                 }
+
                 stack.push(token);
 
             }
