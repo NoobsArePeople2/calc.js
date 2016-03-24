@@ -18,7 +18,7 @@ The `calc` object has two functions attached to it:
     let value = calc.compute('1 + 2');
     console.log(value);  // 3
 
-Compute supports the following mathematical operators with the correct [order of operations](https://en.wikipedia.org/wiki/Order_of_operations):
+`compute` supports the following mathematical operators with the correct [order of operations](https://en.wikipedia.org/wiki/Order_of_operations):
 
 - +
 - -
@@ -43,6 +43,27 @@ Yes, we just took a two line example and made it four lines. There is a reason f
 
 `createComputer` supports all the same operators as `compute`.
 
+## Development
+
+Development requires Node and npm. Once you have those installed grab all the development dependencies with:
+
+    npm install
+
+Once you've completed that there are three simple commands:
+
+1. `npm test`: run all the tests.
+2. `npm run lint`: lint the source code and test code.
+3. `npm run doc`: build the jsdoc documentation.
+
+## Contributing
+
+If you want to contribute to calc.js you must:
+
+1. Write code.
+2. Lint your code. Repeat step 1 as needed.
+3. Document your code.
+4. Write tests for your code that your code passes.
+5. [Submit a pull request](https://github.com/NoobsArePeople2/calc.js/compare).
 
 ## License
 
