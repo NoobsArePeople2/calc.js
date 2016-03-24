@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "doc": "./node_modules/.bin/jsdoc src/calc.js",
+    "doc": "./node_modules/.bin/jsdoc src/calc.js -d docs",
     "lint": "./node_modules/.bin/eslint src/calc.js test/*.spec.js",
     "test": "./node_modules/.bin/mocha --reporter spec"
   },

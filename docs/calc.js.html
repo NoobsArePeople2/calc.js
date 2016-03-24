@@ -1,4 +1,32 @@
-'use strict';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: calc.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: calc.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
 
 /**
  * calc.js, a module for calculating!
@@ -7,7 +35,7 @@
 (function (root, factory) {
 
     // UMD
-    if (typeof define === 'function' && define.amd) {
+    if (typeof define === 'function' &amp;&amp; define.amd) {
         define([], factory);
     } else if (typeof exports === 'object') {
         module.exports = factory();
@@ -71,10 +99,10 @@ var UNARY_OPERATORS = {
  *    - %
  *
  * @param {String} token The string to test.
- * @return {Boolean} <code>true</code> if the token is an operator, <code>false</code> if not.
+ * @return {Boolean} &lt;code>true&lt;/code> if the token is an operator, &lt;code>false&lt;/code> if not.
  */
 function isOperator(token) {
-    return token.length === 1 && OPERATORS[token] !== undefined;
+    return token.length === 1 &amp;&amp; OPERATORS[token] !== undefined;
 }
 
 /**
@@ -86,25 +114,25 @@ function isOperator(token) {
  *    - !
  *
  * @param {String} token The string to test.
- * @return {Boolean} <code>true</code> if the token is an operator, <code>false</code> if not.
+ * @return {Boolean} &lt;code>true&lt;/code> if the token is an operator, &lt;code>false&lt;/code> if not.
  */
 function isUnaryOperator(token) {
-    return token.length === 1 && UNARY_OPERATORS[token] !== undefined;
+    return token.length === 1 &amp;&amp; UNARY_OPERATORS[token] !== undefined;
 }
 
 /**
  * Check if the token is the unary negative operator.
- * E.g., <code>-4</code> as opposed to <code>3 - 4</code>.
+ * E.g., &lt;code>-4&lt;/code> as opposed to &lt;code>3 - 4&lt;/code>.
  * @access private
  * @function isUnaryNegative
  *
  * @param {String} token The token to check.
  * @param {Array} stack The current stack of tokens.
- * @return {Boolean} <code>true</code> if <code>token</code> is unary negative, <code>false</code> otherwise.
+ * @return {Boolean} &lt;code>true&lt;/code> if &lt;code>token&lt;/code> is unary negative, &lt;code>false&lt;/code> otherwise.
  */
 function isUnaryNegative(token, stack) {
     // The token is the minus sign "m" AND the first token on the stack OR the previous token is an operator.
-    return token === '-' && (stack.length === 0 || isOperator(stack[stack.length - 1]));
+    return token === '-' &amp;&amp; (stack.length === 0 || isOperator(stack[stack.length - 1]));
 }
 
 /**
@@ -114,9 +142,9 @@ function isUnaryNegative(token, stack) {
  *
  * @param {String} a First operator to compare.
  * @param {String} b Second operator to compare.
- * @return {Number} A negative number if <code>b</code> has greater precendence than <code>a</code>,
- *                  a positive number if <code>a</code> has greater precendence than <code>b</code>,
- *                  and 0 if <code>a</code> and <code>b</code> have the same precendence.
+ * @return {Number} A negative number if &lt;code>b&lt;/code> has greater precendence than &lt;code>a&lt;/code>,
+ *                  a positive number if &lt;code>a&lt;/code> has greater precendence than &lt;code>b&lt;/code>,
+ *                  and 0 if &lt;code>a&lt;/code> and &lt;code>b&lt;/code> have the same precendence.
  */
 function compareOperators(a, b) {
     return OPERATORS[a][0] - OPERATORS[b][0];
@@ -128,7 +156,7 @@ function compareOperators(a, b) {
  * @function isOpenParen
  *
  * @param {String} token The token to test.
- * @return {Boolean} <code>true</code> if <code>token</code> is an open paren, <code>false</code> otherwise.
+ * @return {Boolean} &lt;code>true&lt;/code> if &lt;code>token&lt;/code> is an open paren, &lt;code>false&lt;/code> otherwise.
  */
 function isOpenParen(token) {
     return token === '(';
@@ -140,7 +168,7 @@ function isOpenParen(token) {
  * @function isCloseParen
  *
  * @param {String} token The token to test.
- * @return {Boolean} <code>true</code> if <code>token</code> is an close paren, <code>false</code> otherwise.
+ * @return {Boolean} &lt;code>true&lt;/code> if &lt;code>token&lt;/code> is an close paren, &lt;code>false&lt;/code> otherwise.
  */
 function isCloseParen(token) {
     return token === ')';
@@ -152,7 +180,7 @@ function isCloseParen(token) {
  * @function isParen
  *
  * @param {String} token The token to test.
- * @return {Boolean} <code>true</code> if <code>token</code> is a paren, <code>false</code> otherwise.
+ * @return {Boolean} &lt;code>true&lt;/code> if &lt;code>token&lt;/code> is a paren, &lt;code>false&lt;/code> otherwise.
  */
 function isParen(token) {
     return token === '(' || token === ')';
@@ -165,7 +193,7 @@ function isParen(token) {
  *
  * @param {Number} a The first number.
  * @param {Number} b The second number.
- * @return {Number} Result of <code>a + b</code>.
+ * @return {Number} Result of &lt;code>a + b&lt;/code>.
  */
 function add(a, b) {
     return a + b;
@@ -179,7 +207,7 @@ function add(a, b) {
  * Wikipedia is fun!
  * @param {Number} a The minuend (number subtracted _from_).
  * @param {Number} b The subtrahend (number being subtracted).
- * @return {Number} Result of <code>a - b</code>.
+ * @return {Number} Result of &lt;code>a - b&lt;/code>.
  */
 function subtract(a, b) {
     return a - b;
@@ -192,7 +220,7 @@ function subtract(a, b) {
  *
  * @param {Number} a The first number.
  * @param {Number} b The second number.
- * @return {Number} Result of <code>a * b</code>.
+ * @return {Number} Result of &lt;code>a * b&lt;/code>.
  */
 function multiply(a, b) {
     return a * b;
@@ -205,7 +233,7 @@ function multiply(a, b) {
  *
  * @param {Number} a The dividend (or numerator).
  * @param {Number} b The divisor (or denominator).
- * @return {Number} Result of <code>a / b</code>.
+ * @return {Number} Result of &lt;code>a / b&lt;/code>.
  */
 function divide(a, b) {
     return a / b;
@@ -218,7 +246,7 @@ function divide(a, b) {
  *
  * @param {Number} a The dividend (??? not sure of the modular math name).
  * @param {Number} b The divisor (??? not sure of the modular math name).
- * @return {Number} Result of <code>a % b</code>.
+ * @return {Number} Result of &lt;code>a % b&lt;/code>.
  */
 function modulo(a, b) {
     return a % b;
@@ -232,7 +260,7 @@ function modulo(a, b) {
  * @param {Number} a First value for the operation.
  * @param {Number} b Second value for the operation.
  * @param {String} op The string corresponding with the operation to perform.
- * @return {Number|NaN} The result of the operation or <code>NaN</code> if something goes awry.
+ * @return {Number|NaN} The result of the operation or &lt;code>NaN&lt;/code> if something goes awry.
  */
 function binaryOp(a, b, op) {
 
@@ -265,7 +293,7 @@ function binaryOp(a, b, op) {
  *
  * @param {Number} a Number to perform the operation on.
  * @param {String} op The operation.
- * @return {Number|NaN} The result of the operation or <code>NaN</code> if something goes awry.
+ * @return {Number|NaN} The result of the operation or &lt;code>NaN&lt;/code> if something goes awry.
  */
 function unaryOp(a, op) {
 
@@ -284,8 +312,8 @@ function unaryOp(a, op) {
  *
  * This is used for the default popping behavior when evaluating string expressions.
  *
- * @param {Stack} stack An object with a <code>pop()</code> method. E.g., <code>Array</code>.
- * @return {Number|NaN} A <code>Number</code> or <code>NaN</code> if the popped value cannot be converted.
+ * @param {Stack} stack An object with a &lt;code>pop()&lt;/code> method. E.g., &lt;code>Array&lt;/code>.
+ * @return {Number|NaN} A &lt;code>Number&lt;/code> or &lt;code>NaN&lt;/code> if the popped value cannot be converted.
  */
 function popper(stack) {
     return +stack.pop();
@@ -296,12 +324,12 @@ function popper(stack) {
  * @access private
  * @function computerPopper
  *
- * Used by the <code>createComputer()</code> function to pop values of a stack
+ * Used by the &lt;code>createComputer()&lt;/code> function to pop values of a stack
  * and reference the computer object's keys.
  *
  * @param {Object} obj The object whose keys we use in the computed expression.
  * @return {Function} A function used to pop values off a stack. Returned function signature:
- *                    <code>function({Stack}):Number|NaN</code>.
+ *                    &lt;code>function({Stack}):Number|NaN&lt;/code>.
  */
 function computerPopper(obj) {
     return function(stack) {
@@ -331,22 +359,22 @@ function readExpression(expression) {
     var postfix = [];
     var lastToken = '';
 
-    while (i < len) {
+    while (i &lt; len) {
 
         var token = exp[i];
 
         if (isOperator(token)) {
 
-            if (isUnaryNegative(token, stack) && (isOperator(lastToken) || lastToken === '')) {
+            if (isUnaryNegative(token, stack) &amp;&amp; (isOperator(lastToken) || lastToken === '')) {
 
                 stack.push('!');
 
             } else {
 
                 var stackLen = stack.length;
-                while (stackLen > 0 &&
-                       isOperator(stack[stackLen - 1]) &&
-                       compareOperators(token, stack[stackLen - 1]) <= 0) {
+                while (stackLen > 0 &amp;&amp;
+                       isOperator(stack[stackLen - 1]) &amp;&amp;
+                       compareOperators(token, stack[stackLen - 1]) &lt;= 0) {
 
                     // While we have something on the stack and the token has less precendence
                     postfix.push(stack.pop());
@@ -364,7 +392,7 @@ function readExpression(expression) {
 
         } else if (token === ')') {
 
-            while (stack.length > 0 && !isOpenParen(stack[stack.length - 1])) {
+            while (stack.length > 0 &amp;&amp; !isOpenParen(stack[stack.length - 1])) {
                 postfix.push(stack.pop());
             }
 
@@ -379,7 +407,7 @@ function readExpression(expression) {
 
             // Read operands longer than a single character
             var start = i;
-            while (i + 1 < len && !isOperator(exp[i + 1]) && !isParen(exp[i + 1])) {
+            while (i + 1 &lt; len &amp;&amp; !isOperator(exp[i + 1]) &amp;&amp; !isParen(exp[i + 1])) {
                 i += 1;
             }
             var end = i + 1;
@@ -387,7 +415,7 @@ function readExpression(expression) {
             postfix.push(exp.slice(start, end));
 
             // Handle unary operators
-            if (stack.length > 0 && isUnaryOperator(stack[stack.length - 1])) {
+            if (stack.length > 0 &amp;&amp; isUnaryOperator(stack[stack.length - 1])) {
                 postfix.push(stack.pop());
             }
         }
@@ -404,12 +432,12 @@ function readExpression(expression) {
 }
 
 /**
- * Evaluates the postfix order produced by <code>readExpression()</code>.
+ * Evaluates the postfix order produced by &lt;code>readExpression()&lt;/code>.
  * @access private
  * @function evaluatePostfix
  *
  * @param {Array} postfix Expression in postfix order.
- * @return {Number|NaN} The result of evaluating the expression or <code>NaN</code> if something goes wrong.
+ * @return {Number|NaN} The result of evaluating the expression or &lt;code>NaN&lt;/code> if something goes wrong.
  */
 function evaluatePostfix(postfix, popFunc) {
 
@@ -426,7 +454,7 @@ function evaluatePostfix(postfix, popFunc) {
     var stack = [];
     var len = postfix.length;
     var i = 0;
-    while (i < len) {
+    while (i &lt; len) {
 
         var token = postfix[i];
 
@@ -466,11 +494,11 @@ function evaluatePostfix(postfix, popFunc) {
  *
  *
  * @param {Object} obj Object that holds the keys used in the mathematical expression
- *                     defined by <code>expression</code>.
- * @param {String} expression Mathematical expression used to compute values stored in <code>obj</code>.
+ *                     defined by &lt;code>expression&lt;/code>.
+ * @param {String} expression Mathematical expression used to compute values stored in &lt;code>obj&lt;/code>.
  * @return {Function} A function that will compute the provided expression based on the current
  *                    values of the provided object.
- *                    Returned function signature: <code>function():Number|NaN</code>.
+ *                    Returned function signature: &lt;code>function():Number|NaN&lt;/code>.
  */
 function createComputer(obj, expression) {
     var postfix = readExpression(expression);
@@ -490,7 +518,7 @@ function createComputer(obj, expression) {
  * compute('1 + 2'); // 3
  *
  * @param {String} exp The expression to evaluate.
- * @return {Number|NaN} The result of evaluating the expression or <code>NaN</code> if something goes wrong.
+ * @return {Number|NaN} The result of evaluating the expression or &lt;code>NaN&lt;/code> if something goes wrong.
  */
 function compute(exp) {
     return evaluatePostfix(readExpression(exp));
@@ -510,4 +538,26 @@ return {
     createComputer: createComputer
 };
 
-}));
+}));</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-calc.html">calc</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Mar 23 2016 22:27:21 GMT-0700 (PDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
