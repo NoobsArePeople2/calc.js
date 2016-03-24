@@ -325,4 +325,32 @@ describe('compute modulo', () => {
             expect(compute(')5 % 4(')).to.be.NaN;
         });
     });
+
+    context('order of operations', () => {
+
+        it('should mod "1 % 2 % (3 % 4)"', () => {
+            expect(compute('1 % 2 % (3 % 4)')).to.equal(1);
+        });
+
+        it('should mod "(1) % (2) % (3 % 4)"', () => {
+            expect(compute('(1) % (2) % (3 % 4)')).to.equal(1);
+        });
+
+        it('should mod "(1 % 2 % 3) % 4"', () => {
+            expect(compute('(1 % 2 % 3) % 4')).to.equal(1);
+        });
+
+        it('should mod "(1 % 2) % 3 % 4"', () => {
+            expect(compute('(1 % 2) % 3 % 4')).to.equal(1);
+        });
+
+        it('should mod "1 % (2 % 3 % 4)"', () => {
+            expect(compute('1 % (2 % 3 % 4)')).to.equal(1);
+        });
+
+        it('should mod "1 % (2 % (3 % 4))"', () => {
+            expect(compute('1 % (2 % (3 % 4))')).to.equal(1);
+        });
+
+    });
 });
