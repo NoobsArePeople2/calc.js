@@ -291,6 +291,33 @@ describe('compute division', () => {
         });
     });
 
+    context('order of operations', () => {
+
+        it('should divide "1 / 2 / (3 / 4)"', () => {
+            expect(compute('1 / 2 / (3 / 4)')).to.be.closeTo(0.6666666666666666, 0.0000000000000001);
+        });
+
+        it('should divide "(1) / (2) / (3 / 4)"', () => {
+            expect(compute('(1) / (2) / (3 / 4)')).to.be.closeTo(0.6666666666666666, 0.0000000000000001);
+        });
+
+        it('should divide "(1 / 2 / 3) / 4"', () => {
+            expect(compute('(1 / 2 / 3) / 4')).to.be.closeTo(0.041666666666666664, 0.0000000000000001);
+        });
+
+        it('should divide "(1 / 2) / 3 / 4"', () => {
+            expect(compute('(1 / 2) / 3 / 4')).to.be.closeTo(0.041666666666666664, 0.0000000000000001);
+        });
+
+        it('should divide "1 / (2 / 3 / 4)"', () => {
+            expect(compute('1 / (2 / 3 / 4)')).to.equal(6);
+        });
+
+        it('should divide "1 / (2 / (3 / 4))"', () => {
+            expect(compute('1 / (2 / (3 / 4))')).to.be.closeTo(0.375, 0.0001);
+        });
+    });
+
     context('junk values', () => {
 
         it('should evaluate expression "4 /" to be NaN', () => {
@@ -324,35 +351,5 @@ describe('compute division', () => {
         it('should evaluate ")5 / 4(" to be NaN', () => {
             expect(compute(')5 / 4(')).to.be.NaN;
         });
-    });
-
-    context('order of operations', () => {
-
-        it('should divide "1 / 2 / (3 / 4)"', () => {
-
-            expect(compute('1 / 2 / (3 / 4)')).to.be.closeTo(0.6666666666666666, 0.0000000000000001);
-
-        });
-
-        it('should divide "(1) / (2) / (3 / 4)"', () => {
-            expect(compute('(1) / (2) / (3 / 4)')).to.be.closeTo(0.6666666666666666, 0.0000000000000001);
-        });
-
-        it('should subtract "(1 / 2 / 3) / 4"', () => {
-            expect(compute('(1 / 2 / 3) / 4')).to.be.closeTo(0.041666666666666664, 0.0000000000000001);
-        });
-
-        it('should subtract "(1 / 2) / 3 / 4"', () => {
-            expect(compute('(1 / 2) / 3 / 4')).to.be.closeTo(0.041666666666666664, 0.0000000000000001);
-        });
-
-        it('should subtract "1 / (2 / 3 / 4)"', () => {
-            expect(compute('1 / (2 / 3 / 4)')).to.equal(6);
-        });
-
-        it('should subtract "1 / (2 / (3 / 4))"', () => {
-            expect(compute('1 / (2 / (3 / 4))')).to.be.closeTo(0.375, 0.0001);
-        });
-
     });
 });

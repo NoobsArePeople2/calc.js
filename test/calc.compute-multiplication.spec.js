@@ -259,6 +259,33 @@ describe('compute multiplication', () => {
         });
     });
 
+    context('order of operations', () => {
+
+        it('should multiply "1 * 2 * (3 * 4)"', () => {
+            expect(compute('1 * 2 * (3 * 4)')).to.equal(24);
+        });
+
+        it('should multiply "(1) * (2) * (3 * 4)"', () => {
+            expect(compute('1 * 2 * (3 * 4)')).to.equal(24);
+        });
+
+        it('should compute "((1 * 2) * (3 * 4))"', () => {
+            expect(compute('((1 * 2) * (3 * 4))')).to.equal(24);
+        });
+
+        it('should compute "(1 * 2) * (3 * 4)"', () => {
+            expect(compute('(1 * 2) * (3 * 4)')).to.equal(24);
+        });
+
+        it('should compute "1 * (2 * (3 * 4))"', () => {
+            expect(compute('1 * (2 * (3 * 4))')).to.equal(24);
+        });
+
+        it('should compute "1 * (2 * 3) * 4"', () => {
+            expect(compute('1 * (2 * 3) * 4')).to.equal(24);
+        });
+    });
+
     context('junk values', () => {
 
         it('should evaluate expression "4 *" to be NaN', () => {
@@ -292,35 +319,5 @@ describe('compute multiplication', () => {
         it('should evaluate ")5 * 4(" to be NaN', () => {
             expect(compute(')5 * 4(')).to.be.NaN;
         });
-    });
-
-    context('order of operations', () => {
-
-        it('should multiply "1 * 2 * (3 * 4)"', () => {
-            expect(compute('1 * 2 * (3 * 4)')).to.equal(24);
-        });
-
-        it('should multiply "(1) * (2) * (3 * 4)"', () => {
-            expect(compute('1 * 2 * (3 * 4)')).to.equal(24);
-        });
-
-        it('should compute "((1 * 2) * (3 * 4))"', () => {
-            expect(compute('((1 * 2) * (3 * 4))')).to.equal(24);
-        });
-
-        it('should compute "(1 * 2) * (3 * 4)"', () => {
-            expect(compute('(1 * 2) * (3 * 4)')).to.equal(24);
-        });
-
-        it('should compute "1 * (2 * (3 * 4))"', () => {
-            expect(compute('1 * (2 * (3 * 4))')).to.equal(24);
-        });
-
-        it('should compute "1 * (2 * 3) * 4"', () => {
-            expect(compute('1 * (2 * 3) * 4')).to.equal(24);
-        });
-
-
-
     });
 });

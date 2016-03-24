@@ -291,6 +291,33 @@ describe('compute modulo', () => {
         });
     });
 
+    context('order of operations', () => {
+
+        it('should mod "1 % 2 % (3 % 4)"', () => {
+            expect(compute('1 % 2 % (3 % 4)')).to.equal(1);
+        });
+
+        it('should mod "(1) % (2) % (3 % 4)"', () => {
+            expect(compute('(1) % (2) % (3 % 4)')).to.equal(1);
+        });
+
+        it('should mod "(1 % 2 % 3) % 4"', () => {
+            expect(compute('(1 % 2 % 3) % 4')).to.equal(1);
+        });
+
+        it('should mod "(1 % 2) % 3 % 4"', () => {
+            expect(compute('(1 % 2) % 3 % 4')).to.equal(1);
+        });
+
+        it('should mod "1 % (2 % 3 % 4)"', () => {
+            expect(compute('1 % (2 % 3 % 4)')).to.equal(1);
+        });
+
+        it('should mod "1 % (2 % (3 % 4))"', () => {
+            expect(compute('1 % (2 % (3 % 4))')).to.equal(1);
+        });
+    });
+
     context('junk values', () => {
 
         it('should evaluate expression "4 %" to be NaN', () => {
@@ -324,33 +351,5 @@ describe('compute modulo', () => {
         it('should evaluate ")5 % 4(" to be NaN', () => {
             expect(compute(')5 % 4(')).to.be.NaN;
         });
-    });
-
-    context('order of operations', () => {
-
-        it('should mod "1 % 2 % (3 % 4)"', () => {
-            expect(compute('1 % 2 % (3 % 4)')).to.equal(1);
-        });
-
-        it('should mod "(1) % (2) % (3 % 4)"', () => {
-            expect(compute('(1) % (2) % (3 % 4)')).to.equal(1);
-        });
-
-        it('should mod "(1 % 2 % 3) % 4"', () => {
-            expect(compute('(1 % 2 % 3) % 4')).to.equal(1);
-        });
-
-        it('should mod "(1 % 2) % 3 % 4"', () => {
-            expect(compute('(1 % 2) % 3 % 4')).to.equal(1);
-        });
-
-        it('should mod "1 % (2 % 3 % 4)"', () => {
-            expect(compute('1 % (2 % 3 % 4)')).to.equal(1);
-        });
-
-        it('should mod "1 % (2 % (3 % 4))"', () => {
-            expect(compute('1 % (2 % (3 % 4))')).to.equal(1);
-        });
-
     });
 });

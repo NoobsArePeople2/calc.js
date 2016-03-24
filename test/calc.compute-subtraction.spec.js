@@ -247,6 +247,37 @@ describe('compute subtraction', () => {
         });
     });
 
+    context('order of operations', () => {
+
+        it('should subtract "1 - 2 - (3 - 4)"', () => {
+            expect(compute('1 - 2 - (3 - 4)')).to.equal(0);
+        });
+
+        it('should subtract "(1) - (2) - (3 - 4)"', () => {
+            expect(compute('(1) - (2) - (3 - 4)')).to.equal(0);
+        });
+
+        it('should subtract "((1 - 2) - (3 - 4))"', () => {
+            expect(compute('((1 - 2) - (3 - 4))')).to.equal(0);
+        });
+
+        it('should subtract "(1 - 2 - 3) - 4"', () => {
+            expect(compute('(1 - 2 - 3) - 4')).to.equal(-8);
+        });
+
+        it('should subtract "(1 - 2) - 3 - 4"', () => {
+            expect(compute('(1 - 2) - 3 - 4')).to.equal(-8);
+        });
+
+        it('should subtract "1 - (2 - 3 - 4)"', () => {
+            expect(compute('1 - (2 - 3 - 4)')).to.equal(6);
+        });
+
+        it('should subtract "1 - (2 - (3 - 4))"', () => {
+            expect(compute('1 - (2 - (3 - 4))')).to.equal(-2);
+        });
+    });
+
     context('junk values', () => {
 
         it('should evaluate expression "4 -" to be NaN', () => {
@@ -281,37 +312,4 @@ describe('compute subtraction', () => {
             expect(compute(')5 - 4(')).to.be.NaN;
         });
     });
-
-    context('order of operations', () => {
-
-        it('should subtract "1 - 2 - (3 - 4)"', () => {
-            expect(compute('1 - 2 - (3 - 4)')).to.equal(0);
-        });
-
-        it('should subtract "(1) - (2) - (3 - 4)"', () => {
-            expect(compute('(1) - (2) - (3 - 4)')).to.equal(0);
-        });
-
-        it('should subtract "((1 - 2) - (3 - 4))"', () => {
-            expect(compute('((1 - 2) - (3 - 4))')).to.equal(0);
-        });
-
-        it('should subtract "(1 - 2 - 3) - 4"', () => {
-            expect(compute('(1 - 2 - 3) - 4')).to.equal(-8);
-        });
-
-        it('should subtract "(1 - 2) - 3 - 4"', () => {
-            expect(compute('(1 - 2) - 3 - 4')).to.equal(-8);
-        });
-
-        it('should subtract "1 - (2 - 3 - 4)"', () => {
-            expect(compute('1 - (2 - 3 - 4)')).to.equal(6);
-        });
-
-        it('should subtract "1 - (2 - (3 - 4))"', () => {
-            expect(compute('1 - (2 - (3 - 4))')).to.equal(-2);
-        });
-
-    });
-
 });
