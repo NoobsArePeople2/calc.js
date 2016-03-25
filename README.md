@@ -30,13 +30,13 @@ The `calc` object has two functions attached to it:
 `createComputer` works like this:
 
     let obj = { a: 1, b: 2 };
-    let computeValue = calc.createCompute(obj, 'a + b');
+    let computeValue = calc.createComputer(obj, 'a + b');
     let value = computeValue();
     console.log(value); // 3
 
 Yes, we just took a two line example and made it four lines. There is a reason for this:
 
-    // Contiuning from the `createComputer` example above
+    // Continuing from the `createComputer` example above
     obj.a = 2;
     value = computeValue();
     console.log(value); // 4
