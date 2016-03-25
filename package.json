@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/NoobsArePeople2/calc.js.git"
+    "url": "git+ssh://git@github.com/NoobsArePeople2/calc.js.git"
   },
   "keywords": [
     "calculator",
@@ -21,7 +21,7 @@
   ],
   "author": "Sean Monahan <sean@seanmonahan.org> (http://seanmonahan.org/)",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/NoobsArePeople2/calc.js#readme",
+  "homepage": "https://github.com/NoobsArePeople2/calc.js#readme",
   "devDependencies": {
     "chai": "^3.5.0",
     "eslint": "^2.4.0",
