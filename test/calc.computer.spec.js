@@ -13,6 +13,13 @@ describe('createComputer', () => {
             expect(typeof compute).to.equal('function');
 
         });
+
+        it('should compute "a"', () => {
+
+            let compute = createComputer({a: 1}, 'a');
+            expect(compute()).to.equal(1);
+
+        });
     });
 
     context('addition', () => {

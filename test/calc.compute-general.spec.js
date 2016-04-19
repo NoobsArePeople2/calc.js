@@ -32,7 +32,7 @@ describe('compute general', () => {
         });
 
         it('should evaluate "(1 + 2 - 3) / (4 * 5)"', () => {
-            expect(compute('(1 + 2 - 3) / (4 * 5)"')).to.equal(0);
+            expect(compute('(1 + 2 - 3) / (4 * 5)')).to.equal(0);
         });
 
         it('should evaluate "1 - (2 + 3) + 1"', () => {
@@ -69,6 +69,14 @@ describe('compute general', () => {
 
         it('should evaluate "(1 + 2 + 3) / 0"', () => {
             expect(compute('(1 + 2 + 3) / 0')).to.equal(+Infinity);
+        });
+
+    });
+
+    context('edge cases', () => {
+
+        it('should compute "1" given the expression "1"', () => {
+            expect(compute('1')).to.equal(1);
         });
 
     });

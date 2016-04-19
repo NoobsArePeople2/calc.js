@@ -446,7 +446,7 @@ function evaluatePostfix(postfix, popFunc) {
         i += 1;
     }
 
-    return stack[0];
+    return pop(stack);
 }
 
 /**
