@@ -20,6 +20,15 @@ describe('createComputer', () => {
             expect(compute()).to.equal(1);
 
         });
+
+        it('should compute "a" when 0', () => {
+
+            let obj = {};
+            let compute = createComputer(obj, 'a');
+            obj.a = 0;
+            expect(compute()).to.equal(0);
+        });
+
     });
 
     context('addition', () => {

@@ -306,7 +306,7 @@ function popper(stack) {
 function computerPopper(obj) {
     return function(stack) {
         var tmp = stack.pop();
-        return +(obj[tmp] ? obj[tmp] : tmp);
+        return +(obj[tmp] !== undefined ? obj[tmp] : tmp);
     };
 }
 
