@@ -29,6 +29,14 @@ describe('createComputer', () => {
             expect(compute()).to.equal(0);
         });
 
+        it('should compute "a" when ""', () => {
+
+            let obj = {};
+            let compute = createComputer(obj, 'a');
+            obj.a = '';
+            expect(compute()).to.be.NaN;
+        });
+
     });
 
     context('addition', () => {
